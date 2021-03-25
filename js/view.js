@@ -1,4 +1,5 @@
 /*global qs, qsa, $on, $parent, $delegate */
+/* global qs, qsa, $ on, $ parent, $ délégué */
 
 (function (window) {
 	'use strict';
@@ -11,6 +12,14 @@
 	     *     Takes a todo application event and registers the handler
 	     *   - render(command, parameterObject)
 	     *     Renders the given command with the options
+		 * 
+		 * Vue qui fait abstraction complète du DOM du navigateur.
+		 * Il a deux points d'entrée simples:
+		 *
+		 * - bind (eventName, gestionnaire)
+		 * Prend un événement d'application todo et enregistre le gestionnaire
+		 * - render (commande, paramètreObjet)
+		 * Rend la commande donnée avec les options
 	     */
 	function View(template) {
 		this.template = template;

@@ -3,10 +3,10 @@
 
 	/**
 	 * Takes a model and view and acts as the controller between them
-	 *
+	 * Prend un modèle et une vue et agit en tant que contrôleur entre eux
 	 * @constructor
-	 * @param {object} model The model instance
-	 * @param {object} view The view instance
+	 * @param {object} model The model instance - L'instance de modèle
+	 * @param {object} view The view instance - L'instance de vue
 	 */
 	function Controller(model, view) {
 		var self = this;
@@ -48,8 +48,8 @@
 
 	/**
 	 * Loads and initialises the view
-	 *
-	 * @param {string} '' | 'active' | 'completed'
+	 * Charge et initialise la vue
+	 * @param {string} '' | 'active' | 'completed' - | 'actif' | 'complété'
 	 */
 	Controller.prototype.setView = function (locationHash) {
 		var route = locationHash.split('/')[1];
@@ -58,8 +58,8 @@
 	};
 
 	/**
-	 * An event to fire on load. Will get all items and display them in the
-	 * todo-list
+	 * An event to fire on load. Will get all items and display them in the todo-list
+	 * Un événement à déclencher en charge. Obtiendra tous les objets et les affichera dans le liste de choses à faire
 	 */
 	Controller.prototype.showAll = function () {
 		var self = this;
@@ -69,7 +69,7 @@
 	};
 
 	/**
-	 * Renders all active tasks
+	 * Renders all active tasks - Rend toutes les tâches actives
 	 */
 	Controller.prototype.showActive = function () {
 		var self = this;
@@ -79,7 +79,7 @@
 	};
 
 	/**
-	 * Renders all completed tasks
+	 * Renders all completed tasks - Rend toutes les tâches terminées
 	 */
 	Controller.prototype.showCompleted = function () {
 		var self = this;
@@ -91,8 +91,10 @@
 	/**
 	 * An event to fire whenever you want to add an item. Simply pass in the event
 	 * object and it'll handle the DOM insertion and saving of the new item.
+	 * Un événement à déclencher chaque fois que vous souhaitez ajouter un élément. Passez simplement à l'événement
+	 * objet et il gérera l'insertion DOM et l'enregistrement du nouvel élément.
 	 */
-	Controller.prototype.adddItem = function (title) {
+	Controller.prototype.addItem = function (title) {
 		var self = this;
 
 		if (title.trim() === '') {
@@ -106,7 +108,7 @@
 	};
 
 	/*
-	 * Triggers the item editing mode.
+	 * Triggers the item editing mode. - Déclenche le mode d'édition des éléments.
 	 */
 	Controller.prototype.editItem = function (id) {
 		var self = this;
@@ -116,7 +118,7 @@
 	};
 
 	/*
-	 * Finishes the item editing mode successfully.
+	 * Finishes the item editing mode successfully. - Finishes the item editing mode successfully.
 	 */
 	Controller.prototype.editItemSave = function (id, title) {
 		var self = this;
@@ -139,7 +141,7 @@
 	};
 
 	/*
-	 * Cancels the item editing mode.
+	 * Cancels the item editing mode. - Annule le mode d'édition des éléments.
 	 */
 	Controller.prototype.editItemCancel = function (id) {
 		var self = this;
@@ -151,9 +153,10 @@
 	/**
 	 * By giving it an ID it'll find the DOM element matching that ID,
 	 * remove it from the DOM and also remove it from storage.
-	 *
-	 * @param {number} id The ID of the item to remove from the DOM and
-	 * storage
+	 * En lui donnant un identifiant, il trouvera l'élément DOM correspondant à cet identifiant,
+	 * supprimez-le du DOM et supprimez-le également du stockage.
+	 * @param {number} id The ID of the item to remove from the DOM and storage - L'ID de l'élément à supprimer du DOM et
+	 * espace de rangement
 	 */
 	Controller.prototype.removeItem = function (id) {
 		var self = this;
@@ -177,6 +180,7 @@
 
 	/**
 	 * Will remove all completed items from the DOM and storage.
+	 * Supprime tous les éléments terminés du DOM et du stockage.
 	 */
 	Controller.prototype.removeCompletedItems = function () {
 		var self = this;
@@ -192,10 +196,13 @@
 	/**
 	 * Give it an ID of a model and a checkbox and it will update the item
 	 * in storage based on the checkbox's state.
-	 *
-	 * @param {number} id The ID of the element to complete or uncomplete
+	 * Donnez-lui un identifiant d'un modèle et une case à cocher et il mettra à jour l'article
+	 * en stockage en fonction de l'état de la case à cocher.
+	 * @param {number} id The ID of the element to complete or uncomplete - L'ID de l'élément à compléter ou incomplet
 	 * @param {object} checkbox The checkbox to check the state of complete
 	 *                          or not
+	 * 							La case à cocher pour vérifier l'état de complet
+	 *                          ou non
 	 * @param {boolean|undefined} silent Prevent re-filtering the todo items
 	 */
 	Controller.prototype.toggleComplete = function (id, completed, silent) {
@@ -215,6 +222,8 @@
 	/**
 	 * Will toggle ALL checkboxes' on/off state and completeness of models.
 	 * Just pass in the event object.
+	 * Allumera l'état d'activation / désactivation de TOUTES les cases à cocher et l'exhaustivité des modèles.
+	 * Passez simplement l'objet événement.
 	 */
 	Controller.prototype.toggleAll = function (completed) {
 		var self = this;
@@ -230,6 +239,8 @@
 	/**
 	 * Updates the pieces of the page which change depending on the remaining
 	 * number of todos.
+	 * Met à jour les morceaux de la page qui changent en fonction du reste
+	 * nombre de todos.
 	 */
 	Controller.prototype._updateCount = function () {
 		var self = this;
@@ -247,6 +258,7 @@
 
 	/**
 	 * Re-filters the todo items, based on the active route.
+	 * Re-filtre les éléments de todo, en fonction de l'itinéraire actif.
 	 * @param {boolean|undefined} force  forces a re-painting of todo items.
 	 */
 	Controller.prototype._filter = function (force) {
@@ -267,6 +279,7 @@
 
 	/**
 	 * Simply updates the filter nav's selected states
+	 * Met simplement à jour les états sélectionnés du navigateur de filtre
 	 */
 	Controller.prototype._updateFilterState = function (currentPage) {
 		// Store a reference to the active route, allowing us to re-filter todo
@@ -282,7 +295,7 @@
 		this.view.render('setFilter', currentPage);
 	};
 
-	// Export to window
+	// Export to window - Exporter vers la fenêtre
 	window.app = window.app || {};
 	window.app.Controller = Controller;
 })(window);
