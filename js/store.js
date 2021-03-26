@@ -97,12 +97,6 @@
 		// Generate an ID
 	    var newId = Date.now(); 
 
-     /*   for (var i = 0; i < 6; i++) {
-     		newId += charset.charAt(Math.floor(Math.random() * charset.length));
-	
-		} */
-
-
 		// If an ID was actually given, find the item and update each property 
 		// Si un identifiant a été effectivement donné, recherchez l'élément et mettez à jour chaque propriété
 		if (id) {

@@ -161,18 +161,14 @@
 	Controller.prototype.removeItem = function (id) {
 		var self = this;
 		var items;
+		
 		self.model.read(function(data) {
 			items = data;
 		});
 
-		items.forEach(function(item) {
-			if (item.id === id) {
-				console.log("Element with ID: " + id + " has been removed.");
-			}
-		});
-
 		self.model.remove(id, function () {
 			self.view.render('removeItem', id);
+			alert("Element with ID: " + id + " has been removed.");
 		});
 
 		self._filter();
@@ -265,11 +261,15 @@
 		var activeRoute = this._activeRoute.charAt(0).toUpperCase() + this._activeRoute.substr(1);
 
 		// Update the elements on the page, which change with each completed todo
+		// Mettre à jour les éléments de la page, qui changent à chaque tâche terminée
 		this._updateCount();
 
 		// If the last active route isn't "All", or we're switching routes, we
 		// re-create the todo item elements, calling:
 		//   this.show[All|Active|Completed]();
+		// Si le dernier itinéraire actif n'est pas "Tous" ou si nous changeons d'itinéraire, nous
+		// recrée les éléments de l'élément todo, en appelant:
+		// this.show [Tout | Actif | Terminé] ();
 		if (force || this._lastActiveRoute !== 'All' || this._lastActiveRoute !== activeRoute) {
 			this['show' + activeRoute]();
 		}
