@@ -37,4 +37,13 @@ Troisième bug  intruduit un conflit éventuel entre deux IDs identiques. Il est
     
     Remplacé par 
     
-    var newId = Date.now();
+    var newId = Date.now;
+    
+Etape 2  : Ou sont les tests   ?  
+  
+   Dans un premier temps, il faut installer NPM et Node.js pour pouvoir déployer Jasmine.
+   Pour lancez les test inutaires, ouvrez dnas votre navigateur le fichier suivant à la racine du projet : ./test/SpecRunner.js
+   Les fichier code des tests Jasmine se trouve à l'emplacement suivant : ./test/ControllerSpec.js
+   
+   Le test suivant a été ajouté :
+    
